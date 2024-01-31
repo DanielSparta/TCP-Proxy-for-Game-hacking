@@ -10,11 +10,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using proxymikmak.Proxy;
 
 namespace proxymikmak
 {
     public partial class Form1 : Form
     {
+        public ProxyReceive data;
         public Form1()
         {
             InitializeComponent();
@@ -42,7 +44,17 @@ namespace proxymikmak
         {
             Environment.Exit(0);
         }
-
+        public void LoadDelegate()
+        {
+            this.data.OnEditEvent += ShowPacket;
+        }
+        private void ShowPacket(string packet)
+        {
+            //You intercepting the packets.
+            MessageBox.Show(packet);
+            //@TODO: manipulating the packet data
+            //@TODO: fixing unknown bug that stop sniffing the packets and printing it after disable CheckBox checking
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 
