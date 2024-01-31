@@ -1,0 +1,5 @@
+C:\Users\User\Desktop\RAT project\proxymikmak\proxymikmak\obj\Debug\proxymikmak.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\RAT project\proxymikmak\proxymikmak\obj\Debug\proxymikmak.Form1.resources
+C:\Users\User\Desktop\RAT project\proxymikmak\proxymikmak\obj\Debug\proxymikmak.Properties.Resources.resources
+C:\Users\User\Desktop\RAT project\proxymikmak\proxymikmak\obj\Debug\proxymikmak.csproj.GenerateResource.cache
+C:\Users\User\Desktop\RAT project\proxymikmak\proxymikmak\obj\Debug\proxymikmak.csproj.CoreCompileInputs.cache
