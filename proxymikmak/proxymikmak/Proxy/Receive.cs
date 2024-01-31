@@ -24,6 +24,7 @@ namespace proxymikmak.Proxy
 
         public void StartReceive(bool ShouldDisplay)
         {
+            //@TODO: All this place can be better.
             try
             {
                 byte[] buffer = new byte[4096];
@@ -41,10 +42,8 @@ namespace proxymikmak.Proxy
                         {
                             this.Instance.textBox1.Text += $"{packets}" + "\n\n";
                         });
-                        string editedtext = Encoding.UTF8.GetString(buffer);
-                        byte[] editedtext_buffer = Encoding.UTF8.GetBytes(editedtext);
                         //If you want to debug the sending packet to server
-                        this.GameServer.Send(editedtext_buffer, 0, editedtext_buffer.Length, SocketFlags.None);
+                        this.GameServer.Send(buffer, 0, bytesRead, SocketFlags.None);
                     }
                     else
                     {
