@@ -27,33 +27,24 @@ namespace proxymikmak.Proxy
         {
             using (System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
             {
-                try
+                targetServer.Connect(this.targetServer, targetPort);
+                MessageBox.Show($"Client connected: {((IPEndPoint)this.ProxyServer.RemoteEndPoint).Address}");
+
+                // Create separate threads to handle data transfer in both directions
+                Thread proxyToGameServer = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer); })); ;
+
+                Thread targetToClient = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer); })); ;
+                Thread targetToClient;
+                targetToClient = new Thread(new ThreadStart(() =>
                 {
-                    targetServer.Connect(this.targetServer, targetPort);
-                    MessageBox.Show($"Client connected: {((IPEndPoint)this.ProxyServer.RemoteEndPoint).Address}");
+                    RelayData(clientSocket, target);
+                })).Start();
 
-                    // Create separate threads to handle data transfer in both directions
-                    Thread clientToTarget = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer) })); ;
+                // Wait for both threads to finish before closing the connection
+                clientToTarget.Join();
+                targetToClient.Join();
 
-                    Thread targetToClient;
-                    targetToClient = new Thread(new ThreadStart(() => {
-                        RelayData(clientSocket, target);
-                    })).Start();
-
-                    // Wait for both threads to finish before closing the connection
-                    clientToTarget.Join();
-                    targetToClient.Join();
-
-                    MessageBox.Show($"Connection closed: {((IPEndPoint)clientSocket.RemoteEndPoint).Address}");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
-                }
-                finally
-                {
-                    this.ProxyServer.Close();
-                }
+                MessageBox.Show($"Connection closed: {((IPEndPoint)clientSocket.RemoteEndPoint).Address}");
             }
         }
     }
