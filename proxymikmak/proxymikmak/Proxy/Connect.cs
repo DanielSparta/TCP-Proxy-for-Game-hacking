@@ -25,6 +25,8 @@ namespace proxymikmak.Proxy
         }
         public void ConnectToGameServer()
         {
+            //@TODO: too many garbage code, all this place looks like my shit. UNREADABLE.
+            
             System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             targetServer.Connect(this.targetServer, targetPort);
