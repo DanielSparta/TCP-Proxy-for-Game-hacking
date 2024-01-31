@@ -35,7 +35,7 @@ namespace proxymikmak.Proxy
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                Console.WriteLine($"aAn error occurred: {ex.Message}");
             }
         }
     }
