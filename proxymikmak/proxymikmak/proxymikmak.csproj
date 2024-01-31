@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\Connect.cs" />
     <Compile Include="Proxy\Receive.cs" />
-    <Compile Include="Proxy\Send.cs" />
     <Compile Include="Socket\Create.cs" />
     <Compile Include="Socket\Receive.cs" />
     <EmbeddedResource Include="Form1.resx">

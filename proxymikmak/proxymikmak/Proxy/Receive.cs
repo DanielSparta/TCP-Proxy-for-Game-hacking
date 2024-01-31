@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Text;
 using System;
+using System.Windows.Forms;
 
 namespace proxymikmak.Proxy
 {
@@ -16,7 +17,7 @@ namespace proxymikmak.Proxy
             this.GameServer = GameServer;
         }
 
-        public void StartReceive()
+        public void StartReceive(bool ShouldDisplay)
         {
             try
             {
@@ -25,18 +26,31 @@ namespace proxymikmak.Proxy
 
                 while ((bytesRead = this.ProxyServer.Receive(buffer)) > 0)
                 {
-                    string[] packets = Encoding.UTF8.GetString(buffer).Split(new char[] { '\0', });
-                    foreach (string packet in packets)
+                    string packets = "";
+                    if (ShouldDisplay)
                     {
-                        this.Instance.packetsRTB.Text += $"{packet}\n\n";
+                        packets = Encoding.UTF8.GetString(buffer);
+                        this.Instance.Invoke((MethodInvoker)delegate
+                        {
+                            this.Instance.textBox1.Text += $"{packets}" + "\n\n";
+                        });
+                        string editedtext = Encoding.UTF8.GetString(buffer);
+                        byte[] editedtext_buffer = Encoding.UTF8.GetBytes(editedtext);
+                        //If you want to debug the sending packet to server
+                        this.GameServer.Send(editedtext_buffer, 0, editedtext_buffer.Length, SocketFlags.None);
                     }
-                    this.GameServer.Send(buffer, 0, bytesRead, SocketFlags.None);
+                    else
+                    {
+                        //If you want to debug the server respone
+                        this.GameServer.Send(buffer, 0, bytesRead, SocketFlags.None);
+                    }
+
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
     }
-}
+}   

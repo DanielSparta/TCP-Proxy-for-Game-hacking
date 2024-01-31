@@ -32,9 +32,8 @@ namespace proxymikmak.Socket
                     new Thread(new ThreadStart(() =>
                     {
                         //After connection established, Proxy server Connect to Game server
-                        Proxy.ProxyConnect proxy = new ProxyConnect(this.instance, ProxyServer, this.targetServer, this.targetPort);
+                        Proxy.ProxyConnect proxy = new ProxyConnect(this.instance, GameClient, this.targetServer, this.targetPort);
                         proxy.ConnectToGameServer();
-
                     })).Start();
                 }
             })).Start();

@@ -18,6 +18,7 @@ namespace proxymikmak
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += CloseEvent;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,9 +36,16 @@ namespace proxymikmak
             //Proxy server receiving connection
             Socket.SocketReceive Data = new Socket.SocketReceive(this, TargetServerPort, TargetServerIP);
             Data.Receive(ProxyServer);
-
         }
 
+        private void CloseEvent(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

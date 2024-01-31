@@ -25,22 +25,33 @@ namespace proxymikmak.Proxy
         }
         public void ConnectToGameServer()
         {
-            using (System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+            targetServer.Connect(this.targetServer, targetPort);
+            MessageBox.Show($"Client connected: " + targetServer);
+
+            // Create separate threads to handle data transfer in both directions
+            Thread proxyToGameServer = new Thread(new ThreadStart(() =>
             {
-                targetServer.Connect(this.targetServer, targetPort);
-                MessageBox.Show($"Client connected: {((IPEndPoint)this.ProxyServer.RemoteEndPoint).Address}");
+                Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer);
+                Data.StartReceive(true);
+            }));
 
-                // Create separate threads to handle data transfer in both directions
-                Thread proxyToGameServer = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer); })); ;
+            Thread GameToClient = new Thread(new ThreadStart(() =>
+            {
+                Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, targetServer, this.ProxyServer);
+                Data.StartReceive(false);
+            }));
 
-                Thread GameToClient = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, targetServer, this.ProxyServer); }));
+            proxyToGameServer.Start();
+            GameToClient.Start();
 
-                // Wait for both threads to finish before closing the connection
-                proxyToGameServer.Join();
-                GameToClient.Join();
+            // Wait for both threads to finish before closing the connection
+            proxyToGameServer.Join();
+            GameToClient.Join();
 
-                MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).Address}");
-            }
+            MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).Address}");
+
         }
     }
 }
