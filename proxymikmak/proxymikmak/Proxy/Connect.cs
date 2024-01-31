@@ -15,29 +15,30 @@ namespace proxymikmak.Proxy
         private System.Net.Sockets.Socket ProxyServer;
         private int targetPort;
         private string targetServer;
-        public ProxyConnect(System.Net.Sockets.Socket ProxyServer, string targetServer, int targetPort)
+        private Form1 GUIClassInstance;
+        public ProxyConnect(Form1 instance, System.Net.Sockets.Socket ProxyServer, string targetServer, int targetPort)
         {
             this.targetPort = targetPort;
             this.ProxyServer = ProxyServer;
             this.targetServer = targetServer;
+            this.GUIClassInstance = instance;
         }
         public void ConnectToGameServer()
         {
-            using (System.Net.Sockets.Socket target = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            using (System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
             {
                 try
                 {
-                    target.Connect(targetServer, targetPort);
+                    targetServer.Connect(this.targetServer, targetPort);
                     MessageBox.Show($"Client connected: {((IPEndPoint)this.ProxyServer.RemoteEndPoint).Address}");
 
                     // Create separate threads to handle data transfer in both directions
-                    Thread clientToTarget;
-                    clientToTarget = new Thread(new ThreadStart(() => {
-                        RelayData(clientSocket, target);
-                        })).Start();
-                    Thread targetToClient = new Thread(() => RelayData(target, clientSocket));
+                    Thread clientToTarget = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer) })); ;
 
-                    targetToClient.Start();
+                    Thread targetToClient;
+                    targetToClient = new Thread(new ThreadStart(() => {
+                        RelayData(clientSocket, target);
+                    })).Start();
 
                     // Wait for both threads to finish before closing the connection
                     clientToTarget.Join();
