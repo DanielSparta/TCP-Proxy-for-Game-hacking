@@ -33,7 +33,7 @@ namespace proxymikmak
             System.Net.Sockets.Socket ProxyServer = Socket.ProxyServer;
 
             //Proxy server receiving connection
-            Socket.SocketReceive Data = new Socket.SocketReceive(TargetServerPort, TargetServerIP);
+            Socket.SocketReceive Data = new Socket.SocketReceive(this, TargetServerPort, TargetServerIP);
             Data.Receive(ProxyServer);
 
         }

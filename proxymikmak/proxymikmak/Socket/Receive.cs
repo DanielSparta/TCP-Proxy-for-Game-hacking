@@ -1,4 +1,5 @@
-﻿using System;
+﻿using proxymikmak.Proxy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,8 +32,9 @@ namespace proxymikmak.Socket
                     new Thread(new ThreadStart(() =>
                     {
                         //After connection established, Proxy server Connect to Game server
-                        Proxy.ProxyReceive ProxyReceive = new Proxy.ProxyReceive(instance, ProxyServer);
-                        ProxyReceive.StartReceive();
+                        Proxy.ProxyConnect proxy = new ProxyConnect(this.instance, ProxyServer, this.targetServer, this.targetPort);
+                        proxy.ConnectToGameServer();
+
                     })).Start();
                 }
             })).Start();

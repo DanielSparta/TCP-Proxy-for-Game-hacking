@@ -33,18 +33,13 @@ namespace proxymikmak.Proxy
                 // Create separate threads to handle data transfer in both directions
                 Thread proxyToGameServer = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer); })); ;
 
-                Thread targetToClient = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer); })); ;
-                Thread targetToClient;
-                targetToClient = new Thread(new ThreadStart(() =>
-                {
-                    RelayData(clientSocket, target);
-                })).Start();
+                Thread GameToClient = new Thread(new ThreadStart(() => { Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, targetServer, this.ProxyServer); }));
 
                 // Wait for both threads to finish before closing the connection
-                clientToTarget.Join();
-                targetToClient.Join();
+                proxyToGameServer.Join();
+                GameToClient.Join();
 
-                MessageBox.Show($"Connection closed: {((IPEndPoint)clientSocket.RemoteEndPoint).Address}");
+                MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).Address}");
             }
         }
     }
