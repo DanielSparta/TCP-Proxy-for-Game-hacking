@@ -28,22 +28,20 @@ namespace proxymikmak.Proxy
             //@TODO: too many garbage code, all this place looks like my shit. UNREADABLE.
             
             System.Net.Sockets.Socket targetServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             targetServer.Connect(this.targetServer, targetPort);
-            MessageBox.Show($"Client connected: " + targetServer);
 
             // Create separate threads to handle data transfer in both directions
-            Thread proxyToGameServer = new Thread(new ThreadStart(() =>
+            Thread proxyToGameServer = new Thread(() =>
             {
                 Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer);
                 Data.StartReceive(true);
-            }));
+            });
 
-            Thread GameToClient = new Thread(new ThreadStart(() =>
+            Thread GameToClient = new Thread(() =>
             {
                 Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, targetServer, this.ProxyServer);
                 Data.StartReceive(false);
-            }));
+            });
 
             proxyToGameServer.Start();
             GameToClient.Start();
@@ -52,7 +50,7 @@ namespace proxymikmak.Proxy
             proxyToGameServer.Join();
             GameToClient.Join();
 
-            MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).Address}");
+            MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).ToString()}");
 
         }
     }

@@ -17,13 +17,13 @@ namespace proxymikmak.Socket
         {
             // Create a TCP socket to listen for incoming connections
             System.Net.Sockets.Socket ProxyServer = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            ProxyServer.Bind(new IPEndPoint(IPAddress.Any, proxyPort));
+            IPEndPoint IPEndPoint = new IPEndPoint(IPAddress.Any, proxyPort);
+            ProxyServer.Bind(IPEndPoint);
             ProxyServer.Listen(10);
             this.ProxyServer = ProxyServer;
 
-            //@TODO: bug fix, there is need to add to "ProxyServer" the RemoteEndPoint.ToString(), right now I'ts not showing the real data
-            //@TODO: I fix, need a check that my fix is working
-            MessageBox.Show($"Proxy listening on port {proxyPort}, forwarding to {ProxyServer.RemoteEndPoint.ToString()}:{proxyPort}");
+            MessageBox.Show($"Proxy listening on port {proxyPort}, forwarding to {IPEndPoint.ToString()}:{proxyPort}");
+            //@NOTICE: NOTHING REALLY FORWARDING. THE CLIENT GAME CODE REWRITEN TO CONNECT ITSELF. WE NEED TO CHANGE HOSTS DETAILS OR SOMETHING
         }
     }
 }
