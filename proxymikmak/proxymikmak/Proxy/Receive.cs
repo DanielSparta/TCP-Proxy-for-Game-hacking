@@ -26,35 +26,37 @@ namespace proxymikmak.Proxy
         public void StartReceive(bool ShouldDisplay)
         {
             //@TODO: All this place can be better.
+            //This is the place where all the main bugs are, this is the place that decide if everything will work or not
             try
             {
                 byte[] buffer = new byte[4096];
-
                 while (true)
                 {
                     int received = this.ProxyServer.Receive(buffer);
-                    string packets = default(string); //default null
-                    if (ShouldDisplay)
+                    if (received > 0)
                     {
-                        packets = Encoding.UTF8.GetString(buffer);
-                        if (this.Instance.traffic.Checked)
-                            OnEditEvent.Invoke(packets);
-                        this.Instance.Invoke((MethodInvoker)delegate
+                        if (ShouldDisplay)
                         {
-                            this.Instance.textBox1.Text += $"{packets}" + "\n\n";
-                        });
-                        //If you want to debug the sending packet to server
-                        if (this.Instance.traffic.Checked)
-                        {
-                            MessageBox.Show("block");
-                            buffer = Encoding.UTF8.GetBytes(this.Instance.textBox2.Text);
+                            string packets = Encoding.UTF8.GetString(buffer);
+                            if (this.Instance.traffic.Checked)
+                            {
+                                OnEditEvent.Invoke(packets);
+                                MessageBox.Show("block");
+                                buffer = Encoding.UTF8.GetBytes(this.Instance.textBox2.Text);
+                            }
+
+                            this.Instance.Invoke((MethodInvoker)delegate
+                            {
+                                this.Instance.textBox1.Text += $"{packets}" + "\n\n";
+                            });
+                            //If you want to debug the sending packet to server
+                            this.GameServer.Send(buffer, 0, buffer.Length, SocketFlags.None);
                         }
-                        this.GameServer.Send(buffer, 0, buffer.Length, SocketFlags.None);
-                    }
-                    else
-                    {
-                        //If you want to debug the server respone
-                        this.GameServer.Send(buffer, 0, received, SocketFlags.None);
+                        else
+                        {
+                            //If you want to debug the server respone
+                            this.GameServer.Send(buffer, 0, received, SocketFlags.None);
+                        }
                     }
                 }
             }

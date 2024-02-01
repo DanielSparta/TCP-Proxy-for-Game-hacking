@@ -64,11 +64,5 @@ namespace proxymikmak
         {
             this.GameServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
         }
-
-        //private string datasent = @"{""t"":""xt"",""b"":{""x"":""ExtManager"",""p"":{},""c"":""us_away"",""r"":3}}";
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //this.GameServer.Send(Encoding.ASCII.GetBytes(datasent));
-        }
     }
 }
