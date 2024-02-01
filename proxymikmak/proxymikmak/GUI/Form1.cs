@@ -17,6 +17,7 @@ namespace proxymikmak
     public partial class Form1 : Form
     {
         public ProxyReceive data;
+        private System.Net.Sockets.Socket GameServer;
         public Form1()
         {
             InitializeComponent();
@@ -47,17 +48,27 @@ namespace proxymikmak
         public void LoadDelegate()
         {
             this.data.OnEditEvent += ShowPacket;
+            this.GameServer = data.GameServer;
         }
         private void ShowPacket(string packet)
         {
             //You intercepting the packets.
-            MessageBox.Show(packet);
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.textBox2.Text = packet;
+            });
             //@TODO: manipulating the packet data
             //@TODO: fixing unknown bug that stop sniffing the packets and printing it after disable CheckBox checking
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            this.GameServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
+        }
 
+        //private string datasent = @"{""t"":""xt"",""b"":{""x"":""ExtManager"",""p"":{},""c"":""us_away"",""r"":3}}";
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //this.GameServer.Send(Encoding.ASCII.GetBytes(datasent));
         }
     }
 }
