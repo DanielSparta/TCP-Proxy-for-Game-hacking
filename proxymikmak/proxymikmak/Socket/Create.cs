@@ -22,7 +22,8 @@ namespace proxymikmak.Socket
             this.ProxyServer = ProxyServer;
 
             //@TODO: bug fix, there is need to add to "ProxyServer" the RemoteEndPoint.ToString(), right now I'ts not showing the real data
-            MessageBox.Show($"Proxy listening on port {proxyPort}, forwarding to {ProxyServer}:{proxyPort}");
+            //@TODO: I fix, need a check that my fix is working
+            MessageBox.Show($"Proxy listening on port {proxyPort}, forwarding to {ProxyServer.RemoteEndPoint.ToString()}:{proxyPort}");
         }
     }
 }
