@@ -52,10 +52,12 @@
     <Compile Include="GUI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Listview.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\Connect.cs" />
     <Compile Include="Proxy\Receive.cs" />
+    <Compile Include="Proxy\Send.cs" />
     <Compile Include="Socket\Create.cs" />
     <Compile Include="Socket\Receive.cs" />
     <EmbeddedResource Include="GUI\Form1.resx">

@@ -61,23 +61,14 @@ namespace TcpProxy.Proxy
                             }
                             */
 
-                            this.Instance.Invoke((MethodInvoker)delegate
-                            {
-                                this.Instance.listView1.Items.Add($"From client");
-                                this.Instance.listView1.Items.Add($"{packets}");
-                            });
-                            //If you want to debug the sending packet to server
-                            this.GameServer.Send(buffer, 0, packets.Length, SocketFlags.None);
+                            GUI.Listview.Add(packets, "From client", this.Instance);
+                            Send.Data(GameServer, buffer);
+
                         }
                         else
                         {
-                            //If you want to debug the server respone
-                            this.Instance.Invoke((MethodInvoker)delegate
-                            {
-                                this.Instance.listView1.Items.Add($"From server");
-                                this.Instance.listView1.Items.Add($"{packets}");
-                            });
-                            this.GameServer.Send(buffer, 0, received, SocketFlags.None);
+                            GUI.Listview.Add(packets, "From server", this.Instance);
+                            Send.Data(GameServer, buffer, received);
                         }
                     }
                 }
@@ -85,7 +76,7 @@ namespace TcpProxy.Proxy
                 {
                     this.Instance.Invoke((MethodInvoker)delegate
                     {
-                        this.Instance.listView1.Items.Add($"An error occurred: {ex.Message}");
+                        this.Instance.PacketList.Items.Add($"An error occurred: {ex.Message}");
                     });
                 }
             }

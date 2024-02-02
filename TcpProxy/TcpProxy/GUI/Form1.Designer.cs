@@ -29,64 +29,64 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.SendPacketText = new System.Windows.Forms.TextBox();
+            this.ServerSendBtn = new System.Windows.Forms.Button();
+            this.PacketList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.traffic = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.ip = new System.Windows.Forms.TextBox();
-            this.port = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.SocketPort = new System.Windows.Forms.TextBox();
+            this.TrafficIntercept = new System.Windows.Forms.CheckBox();
+            this.ClientSendBtn = new System.Windows.Forms.Button();
+            this.ClearBtn = new System.Windows.Forms.Button();
+            this.GameServerIp = new System.Windows.Forms.TextBox();
+            this.GameServerPort = new System.Windows.Forms.TextBox();
+            this.StartBtn = new System.Windows.Forms.Button();
+            this.ProxyServerPort = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox2
+            // SendPacketText
             // 
-            this.textBox2.Location = new System.Drawing.Point(4, 241);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(661, 45);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = " ";
+            this.SendPacketText.Location = new System.Drawing.Point(4, 241);
+            this.SendPacketText.Multiline = true;
+            this.SendPacketText.Name = "SendPacketText";
+            this.SendPacketText.Size = new System.Drawing.Size(661, 45);
+            this.SendPacketText.TabIndex = 2;
+            this.SendPacketText.Text = " ";
             // 
-            // button1
+            // ServerSendBtn
             // 
-            this.button1.Location = new System.Drawing.Point(671, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 20);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Send (To Server)";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ServerSendBtn.Location = new System.Drawing.Point(671, 241);
+            this.ServerSendBtn.Name = "ServerSendBtn";
+            this.ServerSendBtn.Size = new System.Drawing.Size(109, 20);
+            this.ServerSendBtn.TabIndex = 3;
+            this.ServerSendBtn.Text = "Send (To Server)";
+            this.ServerSendBtn.UseVisualStyleBackColor = true;
+            this.ServerSendBtn.Click += new System.EventHandler(this.SendToServer_btn);
             // 
-            // listView1
+            // PacketList
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PacketList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(4, 4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(776, 229);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.PacketList.HideSelection = false;
+            this.PacketList.Location = new System.Drawing.Point(4, 4);
+            this.PacketList.Name = "PacketList";
+            this.PacketList.Size = new System.Drawing.Size(776, 229);
+            this.PacketList.TabIndex = 4;
+            this.PacketList.UseCompatibleStateImageBehavior = false;
+            this.PacketList.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Packet";
-            this.columnHeader1.Width = 642;
+            this.columnHeader1.Text = "Type";
+            this.columnHeader1.Width = 101;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Type";
-            this.columnHeader2.Width = 126;
+            this.columnHeader2.Text = "Packet";
+            this.columnHeader2.Width = 666;
             // 
             // contextMenuStrip1
             // 
@@ -100,92 +100,91 @@
             this.copyPacketToolStripMenuItem.Name = "copyPacketToolStripMenuItem";
             this.copyPacketToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.copyPacketToolStripMenuItem.Text = "Copy Packet";
-            this.copyPacketToolStripMenuItem.Click += new System.EventHandler(this.copyPacketToolStripMenuItem_Click);
+            this.copyPacketToolStripMenuItem.Click += new System.EventHandler(this.PacketListview_CopyPacket);
             // 
-            // traffic
+            // TrafficIntercept
             // 
-            this.traffic.AutoSize = true;
-            this.traffic.Location = new System.Drawing.Point(683, 294);
-            this.traffic.Name = "traffic";
-            this.traffic.Size = new System.Drawing.Size(97, 17);
-            this.traffic.TabIndex = 1;
-            this.traffic.Text = "Intercept traffic";
-            this.traffic.UseVisualStyleBackColor = true;
-            this.traffic.CheckedChanged += new System.EventHandler(this.traffic_CheckedChanged);
+            this.TrafficIntercept.AutoSize = true;
+            this.TrafficIntercept.Location = new System.Drawing.Point(683, 294);
+            this.TrafficIntercept.Name = "TrafficIntercept";
+            this.TrafficIntercept.Size = new System.Drawing.Size(97, 17);
+            this.TrafficIntercept.TabIndex = 1;
+            this.TrafficIntercept.Text = "Intercept traffic";
+            this.TrafficIntercept.UseVisualStyleBackColor = true;
+            this.TrafficIntercept.CheckedChanged += new System.EventHandler(this.TrafficIntercept_click);
             // 
-            // button2
+            // ClientSendBtn
             // 
-            this.button2.Location = new System.Drawing.Point(671, 267);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 20);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Send (To Client)";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ClientSendBtn.Location = new System.Drawing.Point(671, 267);
+            this.ClientSendBtn.Name = "ClientSendBtn";
+            this.ClientSendBtn.Size = new System.Drawing.Size(109, 20);
+            this.ClientSendBtn.TabIndex = 5;
+            this.ClientSendBtn.Text = "Send (To Client)";
+            this.ClientSendBtn.UseVisualStyleBackColor = true;
+            this.ClientSendBtn.Click += new System.EventHandler(this.SendToClient_btn);
             // 
-            // button3
+            // ClearBtn
             // 
-            this.button3.Location = new System.Drawing.Point(584, 291);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 20);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Clear listview";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.ClearBtn.Location = new System.Drawing.Point(584, 291);
+            this.ClearBtn.Name = "ClearBtn";
+            this.ClearBtn.Size = new System.Drawing.Size(93, 20);
+            this.ClearBtn.TabIndex = 6;
+            this.ClearBtn.Text = "Clear listview";
+            this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
-            // ip
+            // GameServerIp
             // 
-            this.ip.Location = new System.Drawing.Point(4, 292);
-            this.ip.Name = "ip";
-            this.ip.Size = new System.Drawing.Size(231, 20);
-            this.ip.TabIndex = 7;
-            this.ip.Text = "Your game server Ip Address";
+            this.GameServerIp.Location = new System.Drawing.Point(4, 292);
+            this.GameServerIp.Name = "GameServerIp";
+            this.GameServerIp.Size = new System.Drawing.Size(231, 20);
+            this.GameServerIp.TabIndex = 7;
+            this.GameServerIp.Text = "Your game server Ip Address";
             // 
-            // port
+            // GameServerPort
             // 
-            this.port.Location = new System.Drawing.Point(241, 292);
-            this.port.Name = "port";
-            this.port.Size = new System.Drawing.Size(95, 20);
-            this.port.TabIndex = 8;
-            this.port.Text = "Game server port";
+            this.GameServerPort.Location = new System.Drawing.Point(241, 292);
+            this.GameServerPort.Name = "GameServerPort";
+            this.GameServerPort.Size = new System.Drawing.Size(95, 20);
+            this.GameServerPort.TabIndex = 8;
+            this.GameServerPort.Text = "Game server port";
             // 
-            // button4
+            // StartBtn
             // 
-            this.button4.Location = new System.Drawing.Point(443, 292);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(78, 19);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "start";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.StartBtn.Location = new System.Drawing.Point(443, 292);
+            this.StartBtn.Name = "StartBtn";
+            this.StartBtn.Size = new System.Drawing.Size(78, 19);
+            this.StartBtn.TabIndex = 10;
+            this.StartBtn.Text = "start";
+            this.StartBtn.UseVisualStyleBackColor = true;
+            this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
-            // SocketPort
+            // ProxyServerPort
             // 
-            this.SocketPort.Location = new System.Drawing.Point(342, 292);
-            this.SocketPort.Name = "SocketPort";
-            this.SocketPort.Size = new System.Drawing.Size(95, 20);
-            this.SocketPort.TabIndex = 11;
-            this.SocketPort.Text = "Socket server port";
+            this.ProxyServerPort.Location = new System.Drawing.Point(342, 292);
+            this.ProxyServerPort.Name = "ProxyServerPort";
+            this.ProxyServerPort.Size = new System.Drawing.Size(95, 20);
+            this.ProxyServerPort.TabIndex = 9;
+            this.ProxyServerPort.Text = "Socket server port";
             // 
             // TcpProxy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 319);
-            this.Controls.Add(this.SocketPort);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.port);
-            this.Controls.Add(this.ip);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.traffic);
+            this.Controls.Add(this.ProxyServerPort);
+            this.Controls.Add(this.StartBtn);
+            this.Controls.Add(this.GameServerPort);
+            this.Controls.Add(this.GameServerIp);
+            this.Controls.Add(this.ClearBtn);
+            this.Controls.Add(this.ClientSendBtn);
+            this.Controls.Add(this.PacketList);
+            this.Controls.Add(this.ServerSendBtn);
+            this.Controls.Add(this.SendPacketText);
+            this.Controls.Add(this.TrafficIntercept);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TcpProxy";
             this.Text = " TCP Proxy";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,20 +192,20 @@
         }
 
         #endregion
-        public System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.TextBox SendPacketText;
+        private System.Windows.Forms.Button ServerSendBtn;
+        public System.Windows.Forms.ListView PacketList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyPacketToolStripMenuItem;
-        public System.Windows.Forms.CheckBox traffic;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox ip;
-        private System.Windows.Forms.TextBox port;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox SocketPort;
+        public System.Windows.Forms.CheckBox TrafficIntercept;
+        private System.Windows.Forms.Button ClientSendBtn;
+        private System.Windows.Forms.Button ClearBtn;
+        private System.Windows.Forms.TextBox GameServerIp;
+        private System.Windows.Forms.TextBox GameServerPort;
+        private System.Windows.Forms.Button StartBtn;
+        private System.Windows.Forms.TextBox ProxyServerPort;
     }
 }
 

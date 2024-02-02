@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TcpProxy.Proxy;
+using TcpProxy.Socket;
 
 namespace TcpProxy
 {
@@ -22,18 +23,14 @@ namespace TcpProxy
         public TcpProxy()
         {
             InitializeComponent();
-            this.FormClosing += CloseEvent;
-            this.listView1.MouseUp += MouseUpEvent;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        { 
             this.TopMost = true;
+            this.FormClosing += CloseEvent;
+            this.PacketList.MouseUp += MouseUpEvent;
         }
-
-        private void CloseEvent(object sender, EventArgs e)
+        private void TrafficIntercept_click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            if (TrafficIntercept.Checked)
+                MessageBox.Show("right now the feature is not working, buggy. there is more work about this thing.");
         }
         public void LoadDelegate()
         {
@@ -41,65 +38,28 @@ namespace TcpProxy
             this.GameServer = data.GameServer;
             this.ProxySocketServer = data.ProxyServer;
         }
-        private void MouseUpEvent(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-                this.contextMenuStrip1.Show(Cursor.Position);
-        }
         private void ShowPacket(byte[] buffer)
         {
             //You intercepting the packets.
             this.Invoke((MethodInvoker)delegate
             {
-                this.textBox2.Text = Encoding.ASCII.GetString(buffer);
+                this.SendPacketText.Text = Encoding.ASCII.GetString(buffer);
             });
             //@TODO: manipulating the packet data
             //@TODO: fixing unknown bug that stop sniffing the packets and printing it after disable CheckBox checking
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Send data to server (from the game)
-            this.GameServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Send data to client (from the server)
-            this.ProxySocketServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
-        }
 
-        private void copyPacketToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count == 1)
-            {
-                string SelectedPacket = listView1.SelectedItems[0].Text;
-                Clipboard.SetText(SelectedPacket);
-            }
-        }
-
-        private void traffic_CheckedChanged(object sender, EventArgs e)
-        {
-            if (traffic.Checked)
-                MessageBox.Show("right now the feature is not working, buggy. there is more work about this thing.");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.listView1.Items.Clear();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void StartBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 //dynamic values
-                string TargetServerIP = ip.Text;
-                int ProxyPort = int.Parse(port.Text);
-                int TargetServerPort = int.Parse(SocketPort.Text);
+                string TargetServerIP = GameServerIp.Text;
+                int ProxyPort = int.Parse(GameServerPort.Text);
+                int TargetServerPort = int.Parse(ProxyServerPort.Text);
 
                 //Proxy server creating
-                Socket.SocketCreate Socket = new Socket.SocketCreate();
-                Socket.Create(ProxyPort);
-                System.Net.Sockets.Socket ProxyServer = Socket.ProxyServer;
+                System.Net.Sockets.Socket ProxyServer = SocketServer.Create(ProxyPort);
 
                 //Proxy server receiving connection
                 Socket.SocketReceive Data = new Socket.SocketReceive(this, TargetServerPort, TargetServerIP);
@@ -108,6 +68,45 @@ namespace TcpProxy
             {
                 MessageBox.Show(a.Message.ToString());
             }
+        }
+        private void SendToServer_btn(object sender, EventArgs e)
+        {
+            try
+            {
+                //Send data to server (from the game)
+                Send.Data(this.GameServer, Encoding.UTF8.GetBytes(this.SendPacketText.Text + "\0"));
+            }
+            catch { }
+        }
+        private void SendToClient_btn(object sender, EventArgs e)
+        {
+            try
+            {
+                //Send data to client (from the server)
+                Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(this.SendPacketText.Text + "\0"));
+            }
+            catch { }
+        }
+        private void MouseUpEvent(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                this.contextMenuStrip1.Show(Cursor.Position);
+        }
+        private void PacketListview_CopyPacket(object sender, EventArgs e)
+        {
+            if (PacketList.SelectedItems.Count == 1)
+            {
+                string SelectedPacket = PacketList.SelectedItems[0].Text;
+                Clipboard.SetText(SelectedPacket);
+            }
+        }
+        private void ClearBtn_Click(object sender, EventArgs e)
+        {
+            this.PacketList.Items.Clear();
+        }
+        private void CloseEvent(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
