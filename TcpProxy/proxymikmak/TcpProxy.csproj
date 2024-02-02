@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{99104E0A-8C8C-4E15-8D7D-A50431D2B5E2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>proxymikmak</RootNamespace>
-    <AssemblyName>proxymikmak</AssemblyName>
+    <RootNamespace>TcpProxy</RootNamespace>
+    <AssemblyName>TcpProxy</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -69,6 +69,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -10,11 +10,11 @@ namespace TcpProxy.Socket
 {
     public class SocketReceive
     {
-        public int targetPort; //443
-        public string targetServer; //"213.8.147.206"
+        public int targetPort;
+        public string targetServer;
         public System.Net.Sockets.Socket ProxyServer;
-        private Form1 instance;
-        public SocketReceive(Form1 instance, int targetPort, string targetServer)
+        private TcpProxy instance;
+        public SocketReceive(TcpProxy instance, int targetPort, string targetServer)
         {
             this.targetPort = targetPort;
             this.targetServer = targetServer;

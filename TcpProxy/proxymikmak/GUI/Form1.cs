@@ -14,12 +14,12 @@ using TcpProxy.Proxy;
 
 namespace TcpProxy
 {
-    public partial class Form1 : Form
+    public partial class TcpProxy : Form
     {
         public ProxyReceive data;
         private System.Net.Sockets.Socket GameServer;
         private System.Net.Sockets.Socket ProxySocketServer;
-        public Form1()
+        public TcpProxy()
         {
             InitializeComponent();
             this.FormClosing += CloseEvent;
@@ -29,19 +29,6 @@ namespace TcpProxy
         private void Form1_Load(object sender, EventArgs e)
         { 
             this.TopMost = true;
-            //dynamic values, will changed from gui
-            string TargetServerIP = "213.8.147.206";
-            int ProxyPort = 443;
-            int TargetServerPort = 443;
-
-            //Proxy server creating
-            Socket.SocketCreate Socket = new Socket.SocketCreate();
-            Socket.Create(ProxyPort);
-            System.Net.Sockets.Socket ProxyServer = Socket.ProxyServer;
-
-            //Proxy server receiving connection
-            Socket.SocketReceive Data = new Socket.SocketReceive(this, TargetServerPort, TargetServerIP);
-            Data.Receive(ProxyServer);
         }
 
         private void CloseEvent(object sender, EventArgs e)
@@ -98,6 +85,29 @@ namespace TcpProxy
         private void button3_Click(object sender, EventArgs e)
         {
             this.listView1.Items.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //dynamic values
+                string TargetServerIP = ip.Text;
+                int ProxyPort = int.Parse(port.Text);
+                int TargetServerPort = int.Parse(SocketPort.Text);
+
+                //Proxy server creating
+                Socket.SocketCreate Socket = new Socket.SocketCreate();
+                Socket.Create(ProxyPort);
+                System.Net.Sockets.Socket ProxyServer = Socket.ProxyServer;
+
+                //Proxy server receiving connection
+                Socket.SocketReceive Data = new Socket.SocketReceive(this, TargetServerPort, TargetServerIP);
+                Data.Receive(ProxyServer);
+            }catch(Exception a)
+            {
+                MessageBox.Show(a.Message.ToString());
+            }
         }
     }
 }

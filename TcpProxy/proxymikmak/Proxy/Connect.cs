@@ -15,8 +15,8 @@ namespace TcpProxy.Proxy
         private System.Net.Sockets.Socket ProxyServer;
         private int targetPort;
         private string targetServer;
-        private Form1 GUIClassInstance;
-        public ProxyConnect(Form1 instance, System.Net.Sockets.Socket ProxyServer, string targetServer, int targetPort)
+        private TcpProxy GUIClassInstance;
+        public ProxyConnect(TcpProxy instance, System.Net.Sockets.Socket ProxyServer, string targetServer, int targetPort)
         {
             this.targetPort = targetPort;
             this.ProxyServer = ProxyServer;

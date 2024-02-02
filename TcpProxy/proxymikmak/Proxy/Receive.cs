@@ -11,10 +11,10 @@ namespace TcpProxy.Proxy
     {
         public delegate void Packet(byte[] buffer);
         public event Packet OnEditEvent;
-        private Form1 Instance;
+        private TcpProxy Instance;
         public System.Net.Sockets.Socket ProxyServer;
         public System.Net.Sockets.Socket GameServer;
-        public ProxyReceive(Form1 instance, System.Net.Sockets.Socket ProxyServer, System.Net.Sockets.Socket GameServer)
+        public ProxyReceive(TcpProxy instance, System.Net.Sockets.Socket ProxyServer, System.Net.Sockets.Socket GameServer)
         {
             this.Instance = instance;
             this.ProxyServer = ProxyServer;
