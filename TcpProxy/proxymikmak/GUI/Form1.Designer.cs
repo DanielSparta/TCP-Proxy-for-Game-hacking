@@ -1,4 +1,4 @@
-﻿namespace proxymikmak
+﻿namespace TcpProxy
 {
     partial class Form1
     {

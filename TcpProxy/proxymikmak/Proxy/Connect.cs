@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace proxymikmak.Proxy
+namespace TcpProxy.Proxy
 {
     public class ProxyConnect
     {

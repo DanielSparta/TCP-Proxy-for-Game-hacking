@@ -2,10 +2,10 @@
 using System.Text;
 using System;
 using System.Windows.Forms;
-using static proxymikmak.Proxy.ProxyReceive;
+using static TcpProxy.Proxy.ProxyReceive;
 using System.Threading;
 
-namespace proxymikmak.Proxy
+namespace TcpProxy.Proxy
 {
     public class ProxyReceive
     {

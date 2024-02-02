@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace proxymikmak.Socket
+namespace TcpProxy.Socket
 {
     public class SocketCreate
     {

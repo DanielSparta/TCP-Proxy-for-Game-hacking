@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using proxymikmak.Proxy;
+using TcpProxy.Proxy;
 
-namespace proxymikmak
+namespace TcpProxy
 {
     public partial class Form1 : Form
     {
