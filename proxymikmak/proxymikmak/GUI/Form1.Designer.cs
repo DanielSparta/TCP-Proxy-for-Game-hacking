@@ -37,25 +37,27 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traffic = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(81, 12);
+            this.textBox2.Location = new System.Drawing.Point(84, 243);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(776, 45);
+            this.textBox2.Size = new System.Drawing.Size(661, 45);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = " ";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(877, 9);
+            this.button1.Location = new System.Drawing.Point(751, 243);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 48);
+            this.button1.Size = new System.Drawing.Size(109, 20);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Send";
+            this.button1.Text = "Send (To Server)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -65,9 +67,9 @@
             this.columnHeader1,
             this.columnHeader2});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 63);
+            this.listView1.Location = new System.Drawing.Point(84, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(921, 229);
+            this.listView1.Size = new System.Drawing.Size(776, 229);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -99,7 +101,7 @@
             // traffic
             // 
             this.traffic.AutoSize = true;
-            this.traffic.Location = new System.Drawing.Point(12, 12);
+            this.traffic.Location = new System.Drawing.Point(5, 6);
             this.traffic.Name = "traffic";
             this.traffic.Size = new System.Drawing.Size(73, 17);
             this.traffic.TabIndex = 1;
@@ -107,17 +109,39 @@
             this.traffic.UseVisualStyleBackColor = true;
             this.traffic.CheckedChanged += new System.EventHandler(this.traffic_CheckedChanged);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(751, 269);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 20);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Send (To Client)";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(5, 29);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 44);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Clear listview";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 303);
+            this.ClientSize = new System.Drawing.Size(867, 295);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.traffic);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -134,6 +158,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyPacketToolStripMenuItem;
         public System.Windows.Forms.CheckBox traffic;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

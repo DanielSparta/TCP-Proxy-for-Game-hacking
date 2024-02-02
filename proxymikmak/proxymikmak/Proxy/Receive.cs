@@ -12,7 +12,7 @@ namespace proxymikmak.Proxy
         public delegate void Packet(byte[] buffer);
         public event Packet OnEditEvent;
         private Form1 Instance;
-        private System.Net.Sockets.Socket ProxyServer;
+        public System.Net.Sockets.Socket ProxyServer;
         public System.Net.Sockets.Socket GameServer;
         public ProxyReceive(Form1 instance, System.Net.Sockets.Socket ProxyServer, System.Net.Sockets.Socket GameServer)
         {
@@ -63,6 +63,7 @@ namespace proxymikmak.Proxy
 
                             this.Instance.Invoke((MethodInvoker)delegate
                             {
+                                this.Instance.listView1.Items.Add($"From client");
                                 this.Instance.listView1.Items.Add($"{packets}");
                             });
                             //If you want to debug the sending packet to server
@@ -71,6 +72,11 @@ namespace proxymikmak.Proxy
                         else
                         {
                             //If you want to debug the server respone
+                            this.Instance.Invoke((MethodInvoker)delegate
+                            {
+                                this.Instance.listView1.Items.Add($"From server");
+                                this.Instance.listView1.Items.Add($"{packets}");
+                            });
                             this.GameServer.Send(buffer, 0, received, SocketFlags.None);
                         }
                     }

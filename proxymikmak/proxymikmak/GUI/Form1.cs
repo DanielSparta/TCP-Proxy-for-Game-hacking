@@ -18,6 +18,7 @@ namespace proxymikmak
     {
         public ProxyReceive data;
         private System.Net.Sockets.Socket GameServer;
+        private System.Net.Sockets.Socket ProxySocketServer;
         public Form1()
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace proxymikmak
         {
             this.data.OnEditEvent += ShowPacket;
             this.GameServer = data.GameServer;
+            this.ProxySocketServer = data.ProxyServer;
         }
         private void MouseUpEvent(object sender, MouseEventArgs e)
         {
@@ -69,8 +71,13 @@ namespace proxymikmak
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show($"sending to: {GameServer.RemoteEndPoint.ToString()}");
+            //Send data to server (from the game)
             this.GameServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Send data to client (from the server)
+            this.ProxySocketServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
         }
 
         private void copyPacketToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,6 +93,11 @@ namespace proxymikmak
         {
             if (traffic.Checked)
                 MessageBox.Show("right now the feature is not working, buggy. there is more work about this thing.");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.listView1.Items.Clear();
         }
     }
 }
