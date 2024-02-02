@@ -34,13 +34,13 @@ namespace proxymikmak.Proxy
             Thread proxyToGameServer = new Thread(() =>
             {
                 Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, this.ProxyServer, targetServer);
-                Data.StartReceive(true);
+                Data.StartReceive(true, true);
             });
 
             Thread GameToClient = new Thread(() =>
             {
                 Proxy.ProxyReceive Data = new Proxy.ProxyReceive(this.GUIClassInstance, targetServer, this.ProxyServer);
-                Data.StartReceive(false);
+                Data.StartReceive(false, false);
             });
 
             proxyToGameServer.Start();

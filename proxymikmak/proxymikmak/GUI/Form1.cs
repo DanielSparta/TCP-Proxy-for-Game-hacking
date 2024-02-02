@@ -22,10 +22,12 @@ namespace proxymikmak
         {
             InitializeComponent();
             this.FormClosing += CloseEvent;
+            this.listView1.MouseUp += MouseUpEvent;
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        { 
+            this.TopMost = true;
             //dynamic values, will changed from gui
             string TargetServerIP = "213.8.147.206";
             int ProxyPort = 443;
@@ -50,19 +52,40 @@ namespace proxymikmak
             this.data.OnEditEvent += ShowPacket;
             this.GameServer = data.GameServer;
         }
-        private void ShowPacket(string packet)
+        private void MouseUpEvent(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                this.contextMenuStrip1.Show(Cursor.Position);
+        }
+        private void ShowPacket(byte[] buffer)
         {
             //You intercepting the packets.
             this.Invoke((MethodInvoker)delegate
             {
-                this.textBox2.Text = packet;
+                this.textBox2.Text = Encoding.ASCII.GetString(buffer);
             });
             //@TODO: manipulating the packet data
             //@TODO: fixing unknown bug that stop sniffing the packets and printing it after disable CheckBox checking
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show($"sending to: {GameServer.RemoteEndPoint.ToString()}");
             this.GameServer.Send(Encoding.UTF8.GetBytes(this.textBox2.Text + "\0"));
+        }
+
+        private void copyPacketToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                string SelectedPacket = listView1.SelectedItems[0].Text;
+                Clipboard.SetText(SelectedPacket);
+            }
+        }
+
+        private void traffic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (traffic.Checked)
+                MessageBox.Show("right now the feature is not working, buggy. there is more work about this thing.");
         }
     }
 }
