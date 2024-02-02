@@ -14,7 +14,8 @@ namespace TcpProxy.Proxy
         }
         public static void Data(System.Net.Sockets.Socket SocketValue, byte[] buffer, int received)
         {
-            //for some reason I cannot send using buffer.Length, only using received which is int
+            //This function is a overload
+            //for some reason I cannot send using buffer.Length, only using received which is int.
             SocketValue.Send(buffer, 0, received, System.Net.Sockets.SocketFlags.None);
         }
     }

@@ -46,12 +46,11 @@ namespace TcpProxy.Proxy
             proxyToGameServer.Start();
             GameToClient.Start();
 
-            // Wait for both threads to finish before closing the connection
             proxyToGameServer.Join();
             GameToClient.Join();
 
-            MessageBox.Show($"Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).ToString()}");
-
+            // Wait for both threads to finish before closing the connection
+            GUI.Listview.AddItem($"no data - Connection closed: {((IPEndPoint)targetServer.RemoteEndPoint).ToString()}", "notice", this.GUIClassInstance);
         }
     }
 }

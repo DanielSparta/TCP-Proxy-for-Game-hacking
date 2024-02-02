@@ -80,13 +80,13 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Type";
-            this.columnHeader1.Width = 101;
+            this.columnHeader1.Text = "Packet";
+            this.columnHeader1.Width = 653;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Packet";
-            this.columnHeader2.Width = 666;
+            this.columnHeader2.Text = "Type";
+            this.columnHeader2.Width = 116;
             // 
             // contextMenuStrip1
             // 

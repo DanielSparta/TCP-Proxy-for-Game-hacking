@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using static TcpProxy.Proxy.ProxyReceive;
 using System.Threading;
+using TcpProxy.GUI;
 
 namespace TcpProxy.Proxy
 {
@@ -28,12 +29,12 @@ namespace TcpProxy.Proxy
             //This is the place where all the main bugs are, this is the place that decide if everything will work or not
             byte[] buffer = new byte[1000];
 
-            while (true)
+            int received;
+            while ((received = this.ProxyServer.Receive(buffer)) > 0)
             {
                 try
                 {
                     Array.Clear(buffer, 0, buffer.Length);
-                    int received = this.ProxyServer.Receive(buffer);
                     if (received > 0)
                     {
                         string packets = Encoding.UTF8.GetString(buffer);
@@ -61,13 +62,13 @@ namespace TcpProxy.Proxy
                             }
                             */
 
-                            GUI.Listview.Add(packets, "From client", this.Instance);
+                            GUI.Listview.AddItem(packets, "From client", this.Instance);
                             Send.Data(GameServer, buffer);
 
                         }
                         else
                         {
-                            GUI.Listview.Add(packets, "From server", this.Instance);
+                            GUI.Listview.AddItem(packets, "From server", this.Instance);
                             Send.Data(GameServer, buffer, received);
                         }
                     }
@@ -76,7 +77,7 @@ namespace TcpProxy.Proxy
                 {
                     this.Instance.Invoke((MethodInvoker)delegate
                     {
-                        this.Instance.PacketList.Items.Add($"An error occurred: {ex.Message}");
+                        Listview.AddItem($"An error occurred: {ex.Message}", "error", this.Instance);
                     });
                 }
             }

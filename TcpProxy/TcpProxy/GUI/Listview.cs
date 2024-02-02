@@ -10,7 +10,7 @@ namespace TcpProxy.GUI
 {
     public class Listview
     {
-        public static void Add(string value, string substring, TcpProxy GUIform)
+        public static void AddItem(string value, string substring, TcpProxy GUIform)
         {
             ListViewItem item = new ListViewItem(value);
             item.SubItems.Add(substring);
