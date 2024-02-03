@@ -34,51 +34,44 @@ namespace TcpProxy.Proxy
             {
                 try
                 {
-                    if (received > 0)
+                    string packets = Encoding.UTF8.GetString(buffer);
+
+                    if (ShouldDisplay)
                     {
-                        string packets = Encoding.UTF8.GetString(buffer);
-                        buffer = Encoding.UTF8.GetBytes(packets);
-
-                        if (ShouldDisplay)
+                        /*if (LoadDelegate)
                         {
-                            if (LoadDelegate)
-                            {
-                                this.Instance.data = this;
-                                this.Instance.LoadDelegate();
-                                LoadDelegate = false;
-                            }
+                            this.Instance.data = this;
+                            this.Instance.LoadDelegate();
+                            LoadDelegate = false;
+                        }*/
 
-                            /* VERY BUGGY RIGHT NOW.
-                             * @TODO: FIX THE INTERCEPT TRAFFIC IN REAL TIME FEATURE
-                            if (this.Instance.traffic.Checked)
-                            {
-                                Thread InterceptPacket = new Thread((() =>
-                                {
-                                    OnEditEvent.Invoke(buffer);
-                                    buffer = Encoding.UTF8.GetBytes(this.Instance.textBox2.Text);
-                                }));
-                                InterceptPacket.Start();
-                            }
-                            */
-
-                            GUI.Listview.AddItem(packets, "From client", this.Instance);
-                            Send.Data(GameServer, buffer);
-
-                        }
-                        else
+                        /* VERY BUGGY RIGHT NOW.
+                         * @TODO: FIX THE INTERCEPT TRAFFIC IN REAL TIME FEATURE
+                        if (this.Instance.traffic.Checked)
                         {
-                            GUI.Listview.AddItem(packets, "From server", this.Instance);
-                            Send.Data(GameServer, buffer, received);
+                            Thread InterceptPacket = new Thread((() =>
+                            {
+                                OnEditEvent.Invoke(buffer);
+                                buffer = Encoding.UTF8.GetBytes(this.Instance.textBox2.Text);
+                            }));
+                            InterceptPacket.Start();
                         }
-                        Array.Clear(buffer, 0, buffer.Length);
+                        */
+
+                        Listview.AddItem(packets, "From client", this.Instance);
+                        Send.Data(GameServer, buffer);
+
                     }
+                    else
+                    {
+                        Listview.AddItem(packets, "From server", this.Instance);
+                        Send.Data(GameServer, buffer, received);
+                    }
+                    Array.Clear(buffer, 0, buffer.Length);
                 }
                 catch (Exception ex)
                 {
-                    this.Instance.Invoke((MethodInvoker)delegate
-                    {
-                        Listview.AddItem($"An error occurred: {ex.Message}", "error", this.Instance);
-                    });
+                    Listview.AddItem($"An error occurred: {ex.Message}", "error", this.Instance);
                 }
             }
         }
