@@ -59,7 +59,7 @@ namespace TcpProxy.Proxy
                         */
 
                         Listview.AddItem(packets, "From client", this.Instance);
-                        Send.Data(GameServer, buffer);
+                        Send.Data(GameServer, buffer, received);
 
                     }
                     else
