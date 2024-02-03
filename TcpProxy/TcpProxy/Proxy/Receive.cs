@@ -38,12 +38,12 @@ namespace TcpProxy.Proxy
 
                     if (ShouldDisplay)
                     {
-                        /*if (LoadDelegate)
+                        if (LoadDelegate)
                         {
                             this.Instance.data = this;
                             this.Instance.LoadDelegate();
                             LoadDelegate = false;
-                        }*/
+                        }
 
                         /* VERY BUGGY RIGHT NOW.
                          * @TODO: FIX THE INTERCEPT TRAFFIC IN REAL TIME FEATURE

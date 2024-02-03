@@ -34,9 +34,9 @@ namespace TcpProxy
         }
         public void LoadDelegate()
         {
-            //this.data.OnEditEvent += ShowPacket;
-            //this.GameServer = data.GameServer;
-            //this.ProxySocketServer = data.ProxyServer;
+            this.data.OnEditEvent += ShowPacket;
+            this.GameServer = data.GameServer;
+            this.ProxySocketServer = data.ProxyServer;
         }
         private void ShowPacket(byte[] buffer)
         {

@@ -139,7 +139,7 @@
             this.GameServerIp.Name = "GameServerIp";
             this.GameServerIp.Size = new System.Drawing.Size(231, 20);
             this.GameServerIp.TabIndex = 7;
-            this.GameServerIp.Text = "Your game server Ip Address";
+            this.GameServerIp.Text = "213.8.147.198";
             // 
             // GameServerPort
             // 
@@ -147,7 +147,7 @@
             this.GameServerPort.Name = "GameServerPort";
             this.GameServerPort.Size = new System.Drawing.Size(95, 20);
             this.GameServerPort.TabIndex = 8;
-            this.GameServerPort.Text = "Game server port";
+            this.GameServerPort.Text = "443";
             // 
             // StartBtn
             // 
@@ -165,7 +165,7 @@
             this.ProxyServerPort.Name = "ProxyServerPort";
             this.ProxyServerPort.Size = new System.Drawing.Size(95, 20);
             this.ProxyServerPort.TabIndex = 9;
-            this.ProxyServerPort.Text = "Socket server port";
+            this.ProxyServerPort.Text = "443";
             // 
             // TcpProxy
             // 
