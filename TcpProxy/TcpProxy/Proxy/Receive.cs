@@ -34,7 +34,6 @@ namespace TcpProxy.Proxy
             {
                 try
                 {
-                    Array.Clear(buffer, 0, buffer.Length);
                     if (received > 0)
                     {
                         string packets = Encoding.UTF8.GetString(buffer);
@@ -71,6 +70,7 @@ namespace TcpProxy.Proxy
                             GUI.Listview.AddItem(packets, "From server", this.Instance);
                             Send.Data(GameServer, buffer, received);
                         }
+                        Array.Clear(buffer, 0, buffer.Length);
                     }
                 }
                 catch (Exception ex)
