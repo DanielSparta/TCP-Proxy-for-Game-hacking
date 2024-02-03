@@ -182,7 +182,7 @@
             this.Controls.Add(this.ServerSendBtn);
             this.Controls.Add(this.SendPacketText);
             this.Controls.Add(this.TrafficIntercept);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TcpProxy";
             this.Text = " TCP Proxy";
             this.contextMenuStrip1.ResumeLayout(false);
