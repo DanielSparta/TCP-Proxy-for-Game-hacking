@@ -43,9 +43,9 @@ namespace TcpProxy.Proxy
                             this.Instance.data = this;
                             this.Instance.LoadDelegate();
                             LoadDelegate = false;
-                        }
 
-                        /* VERY BUGGY RIGHT NOW.
+
+                        }                        /* VERY BUGGY RIGHT NOW.
                          * @TODO: FIX THE INTERCEPT TRAFFIC IN REAL TIME FEATURE
                         if (this.Instance.traffic.Checked)
                         {

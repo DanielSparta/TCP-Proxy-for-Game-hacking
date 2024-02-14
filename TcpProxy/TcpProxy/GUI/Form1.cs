@@ -108,5 +108,33 @@ namespace TcpProxy
         {
             Environment.Exit(0);
         }
+
+        private void TcpProxy_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Send data to client (from the server)
+                Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""r"":-1,""o"":{""add"":""[{'id':" + textBox1.Text + @"}]"",""_cmd"":""inv_list""}},""t"":""xt""}" + "\0"));
+            }
+            catch { }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 1000; i<=10000; i++)
+            try
+            {
+                //Send data to client (from the server)
+                Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""r"":-1,""o"":{""add"":""[{'id':" + i + @"}]"",""_cmd"":""inv_list""}},""t"":""xt""}" + "\0"));
+                Thread.Sleep(300);
+            }
+            catch { }
+            MessageBox.Show("Done");
+        }
     }
 }
