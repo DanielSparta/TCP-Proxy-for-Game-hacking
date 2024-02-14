@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Sockets;
-using System.Net;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TcpProxy.Proxy;
 using TcpProxy.Socket;
@@ -51,6 +43,7 @@ namespace TcpProxy
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
+            new Thread(() => StringAddress.Change()).Start();
             try
             {
                 //dynamic values
@@ -122,19 +115,6 @@ namespace TcpProxy
                 Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""r"":-1,""o"":{""add"":""[{'id':" + textBox1.Text + @"}]"",""_cmd"":""inv_list""}},""t"":""xt""}" + "\0"));
             }
             catch { }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            for (int i = 1000; i<=10000; i++)
-            try
-            {
-                //Send data to client (from the server)
-                Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""r"":-1,""o"":{""add"":""[{'id':" + i + @"}]"",""_cmd"":""inv_list""}},""t"":""xt""}" + "\0"));
-                Thread.Sleep(300);
-            }
-            catch { }
-            MessageBox.Show("Done");
         }
     }
 }
