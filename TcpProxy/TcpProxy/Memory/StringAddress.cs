@@ -34,10 +34,10 @@ public class StringAddress
         public uint Type;
     }
 
-    public static void Change()
+    public static void Change(string addressIP)
     {
         string processName = "מיקמק";
-        string searchString = "213.8.147.198";
+        string searchString = addressIP;
         string replaceString = "192.168.1.18";
 
         Process targetProcess = Process.GetProcessesByName(processName).FirstOrDefault();
