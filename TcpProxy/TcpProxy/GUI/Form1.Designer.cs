@@ -39,10 +39,7 @@
             this.TrafficIntercept = new System.Windows.Forms.CheckBox();
             this.ClientSendBtn = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
-            this.GameServerIp = new System.Windows.Forms.TextBox();
-            this.GameServerPort = new System.Windows.Forms.TextBox();
             this.StartBtn = new System.Windows.Forms.Button();
-            this.ProxyServerPort = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -145,39 +142,15 @@
             this.ClearBtn.UseVisualStyleBackColor = true;
             this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
-            // GameServerIp
-            // 
-            this.GameServerIp.Location = new System.Drawing.Point(3, 288);
-            this.GameServerIp.Name = "GameServerIp";
-            this.GameServerIp.Size = new System.Drawing.Size(231, 20);
-            this.GameServerIp.TabIndex = 7;
-            this.GameServerIp.Text = "213.8.147.198";
-            // 
-            // GameServerPort
-            // 
-            this.GameServerPort.Location = new System.Drawing.Point(240, 288);
-            this.GameServerPort.Name = "GameServerPort";
-            this.GameServerPort.Size = new System.Drawing.Size(95, 20);
-            this.GameServerPort.TabIndex = 8;
-            this.GameServerPort.Text = "443";
-            // 
             // StartBtn
             // 
-            this.StartBtn.Location = new System.Drawing.Point(442, 288);
+            this.StartBtn.Location = new System.Drawing.Point(6, 287);
             this.StartBtn.Name = "StartBtn";
             this.StartBtn.Size = new System.Drawing.Size(78, 19);
             this.StartBtn.TabIndex = 10;
             this.StartBtn.Text = "start";
             this.StartBtn.UseVisualStyleBackColor = true;
             this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
-            // 
-            // ProxyServerPort
-            // 
-            this.ProxyServerPort.Location = new System.Drawing.Point(341, 288);
-            this.ProxyServerPort.Name = "ProxyServerPort";
-            this.ProxyServerPort.Size = new System.Drawing.Size(95, 20);
-            this.ProxyServerPort.TabIndex = 9;
-            this.ProxyServerPort.Text = "443";
             // 
             // tabControl1
             // 
@@ -194,11 +167,8 @@
             // 
             this.tabPage1.Controls.Add(this.PacketList);
             this.tabPage1.Controls.Add(this.TrafficIntercept);
-            this.tabPage1.Controls.Add(this.GameServerPort);
             this.tabPage1.Controls.Add(this.ClientSendBtn);
-            this.tabPage1.Controls.Add(this.ProxyServerPort);
             this.tabPage1.Controls.Add(this.ServerSendBtn);
-            this.tabPage1.Controls.Add(this.GameServerIp);
             this.tabPage1.Controls.Add(this.SendPacketText);
             this.tabPage1.Controls.Add(this.StartBtn);
             this.tabPage1.Controls.Add(this.ClearBtn);
@@ -303,10 +273,7 @@
         public System.Windows.Forms.CheckBox TrafficIntercept;
         private System.Windows.Forms.Button ClientSendBtn;
         private System.Windows.Forms.Button ClearBtn;
-        private System.Windows.Forms.TextBox GameServerIp;
-        private System.Windows.Forms.TextBox GameServerPort;
         private System.Windows.Forms.Button StartBtn;
-        private System.Windows.Forms.TextBox ProxyServerPort;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

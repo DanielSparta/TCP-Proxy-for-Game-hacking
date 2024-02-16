@@ -63,7 +63,7 @@ namespace TcpProxy
                 }
                 catch (Exception a)
                 {
-                    MessageBox.Show(a.Message.ToString());
+                    
                 }
             }).Start();
 
@@ -86,10 +86,28 @@ namespace TcpProxy
                 }
                 catch (Exception a)
                 {
-                    MessageBox.Show(a.Message.ToString());
+                    
                 }
             }).Start();
         }
+        //{"b":{"r":68309,"o":{"p":0,"popup":34,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //"כבר יש לך את הפריט"
+        //{"b":{"r":68309,"o":{"p":0,"popup":38,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //תתחדשו הפריט התווסף לכרטיס מיקמק האישי
+        //{"b":{"r":68309,"o":{"p":0,"popup":43,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //הרכישה בוצעה בהצלחה
+        //{"b":{"r":68309,"o":{"p":0,"popup":54,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //תודה! הססמא נשלחה אלייך
+        //{"b":{"r":68309,"o":{"p":0,"popup":56,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //המייל או שם המשתמש לא נמצאו במערכת
+        //{"b":{"r":68309,"o":{"p":0,"popup":60,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //תתחדש! הפריט שרכשת התווסף למלאי המיקמק שלך
+        //{"b":{"r":68309,"o":{"p":0,"popup":63,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //אין אפשרות לרכוש פריטים נוספים החודש
+        //{"b":{"r":68309,"o":{"p":0,"popup":106,"coins":120,"_cmd":"win","status":-3}},"t":"xt"}
+        //עצרת פה ב106
+
+
         private void SendToServer_btn(object sender, EventArgs e)
         {
             try
