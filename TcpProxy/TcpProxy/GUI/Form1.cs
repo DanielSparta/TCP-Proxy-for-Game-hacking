@@ -44,7 +44,7 @@ namespace TcpProxy
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            new Thread(() => StringAddress.Change("213.8.147.201")).Start();
+            /*new Thread(() => StringAddress.Change("213.8.147.201")).Start();
             new Thread(() =>
             {
                 try
@@ -65,7 +65,7 @@ namespace TcpProxy
                 {
                     
                 }
-            }).Start();
+            }).Start();*/
 
             new Thread(() => StringAddress.Change("213.8.147.198")).Start();
             new Thread(() =>
