@@ -44,7 +44,7 @@ namespace TcpProxy
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            new Thread(() => StringAddress.Change("213.8.147.201")).Start();
+            /*new Thread(() => StringAddress.Change("213.8.147.201")).Start();
             new Thread(() =>
             {
                 try
@@ -65,7 +65,7 @@ namespace TcpProxy
                 {
                     
                 }
-            }).Start();
+            }).Start();*/
 
             new Thread(() => StringAddress.Change("213.8.147.198")).Start();
             new Thread(() =>
@@ -135,8 +135,12 @@ namespace TcpProxy
         {
             if (PacketList.SelectedItems.Count == 1)
             {
-                string SelectedPacket = PacketList.SelectedItems[0].Text;
-                Clipboard.SetText(SelectedPacket);
+                try
+                {
+                    string SelectedPacket = PacketList.SelectedItems[0].Text;
+                    Clipboard.SetText(SelectedPacket);
+                }
+                catch { MessageBox.Show("Error"); }
             }
         }
         private void ClearBtn_Click(object sender, EventArgs e)
@@ -159,6 +163,14 @@ namespace TcpProxy
             {
                 //Send data to client (from the server)
                 Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""r"":-1,""o"":{""add"":""[{'id':" + textBox1.Text + @"}]"",""_cmd"":""inv_list""}},""t"":""xt""}" + "\0"));
+
+                //{"b":{"c":"msg_e","p":{"id":444},"r":16,"x":"ExtManager"},"t":"xt"}
+                //מאפשר לשלוח הודעות ריקיות
+                //{"b":{"c":"trade_sendRequest","p":{"username":"מנהל"},"r":10,"x":"ExtManager"},"t":"xt"}
+                //שליחת החלפה
+
+                //הודעה שעוקפת
+                //{"b":{"c":"avt_uvr","p":{"mvt":"\u0000{\"b\":{"r\":11,"o\":{\"msg\":\"message\",\"sender\":\"nickname\",\"_cmd\":\"msg\"}},\"t\":\"xt\"}\u0000"},"r":3,"x":"ExtManager"},"t":"xt"} 
             }
             catch { }
         }
@@ -166,6 +178,14 @@ namespace TcpProxy
         private void button2_Click(object sender, EventArgs e)
         {
             Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{ ""r"":-1,""o"":{""prizeDesc"":""[{'a':'" + textBox2.Text + @"','c':'1'}]"",""res"":""ok"",""_cmd"":""codes_auth_res"",""prizeType"":8} },""t"":""xt""}" + "\0"));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Send.Data(this.ProxySocketServer, Encoding.UTF8.GetBytes(@"{""b"":{""c"":""avt_uvr"",""p"":{""mvt"":""\u0000{\""b\"":{\""r\"":11,\""o\"":{\""msg\"":\""" + message.Text + @"\"",\""sender\"":\""" + username.Text + @"\"",\""_cmd\"":\""msg\""}},\""t\"":\""xt\""}\u0000""},""r"":3,""x"":""ExtManager""},""t"":""xt""}" + "\0"));
+
+            //הודעה שעוקפת
+            //{"b":{"c":"avt_uvr","p":{"mvt":"\u0000{\"b\":{"r\":11,"o\":{\"msg\":\"message\",\"sender\":\"nickname\",\"_cmd\":\"msg\"}},\"t\":\"xt\"}\u0000"},"r":3,"x":"ExtManager"},"t":"xt"} 
         }
     }
 }

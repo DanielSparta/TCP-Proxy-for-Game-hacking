@@ -48,6 +48,9 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.username = new System.Windows.Forms.TextBox();
+            this.message = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -182,6 +185,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.message);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.username);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -240,6 +246,34 @@
             this.textBox2.Size = new System.Drawing.Size(192, 38);
             this.textBox2.TabIndex = 2;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(342, 258);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(72, 39);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Send Message";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // username
+            // 
+            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.username.Location = new System.Drawing.Point(283, 166);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(192, 38);
+            this.username.TabIndex = 2;
+            this.username.Text = "Username";
+            // 
+            // message
+            // 
+            this.message.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.message.Location = new System.Drawing.Point(283, 210);
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(192, 38);
+            this.message.TabIndex = 4;
+            this.message.Text = "Message";
+            // 
             // TcpProxy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +316,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox message;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox username;
     }
 }
 
