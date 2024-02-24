@@ -38,7 +38,7 @@ public class StringAddress
     {
         string processName = "מיקמק";
         string searchString = addressIP;
-        string replaceString = "192.168.1.18";
+        string replaceString = "172.0.2.131";
 
         Process targetProcess = Process.GetProcessesByName(processName).FirstOrDefault();
 
