@@ -36,15 +36,15 @@ public class StringAddress
 
     public static void Change(string addressIP)
     {
-        string processName = "מיקמק";
+        string processName = "process_name_here";
         string searchString = addressIP;
-        string replaceString = "172.0.2.131";
+        string replaceString = "127.0.0.1";
 
         Process targetProcess = Process.GetProcessesByName(processName).FirstOrDefault();
 
         if (targetProcess == null)
         {
-            Console.WriteLine("No process with the name מיקמק found.");
+            Console.WriteLine("No process with the name found.");
             return;
         }
 
