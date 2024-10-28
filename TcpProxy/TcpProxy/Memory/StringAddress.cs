@@ -37,7 +37,7 @@ public class StringAddress
     public static void Change(string addressIP)
     {
         string processName = "process_name_here";
-        string searchString = addressIP;
+        string searchString = addressIP; // this value is the user server-ip value at the GUI screen
         string replaceString = "127.0.0.1";
 
         Process targetProcess = Process.GetProcessesByName(processName).FirstOrDefault();
